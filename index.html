@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THRONES</title>
+    <style>
+        .imagen{
+            width: 280px;
+            height: 200px;
+            border: solid 2px;
+            border-color: black;
+        }
+        .fondo{
+            background-image: url(images-2.jpg);
+            background-position: center; 
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin:auto;
+            padding:auto;
+            
+        }
+    
+        .estycol{
+            color: rgb(44, 7, 129) !important;
+        }
+        .texto{
+            text-align:center;
+        }
+        .card{
+            align-items: center;
+            width: auto;
+            height: auto;
+            opacity: 0.6;
+            border-radius:10px !important;
+            border:solid 2px rgb(84, 25, 25) !important;
+            background-color:rgb(223, 213, 213) !important;
+        } 
+        .texto{
+            text-align:center;
+    
+            background-image: url(images.jpg);
+            background-position: center; 
+            background-repeat: no-repeat;
+            background-size: cover;
+            height:180px;
+            width: auto;
+            opacity:0.5;
+
+        }     
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</head>     
+<body class= "fondo">
+    <div class="container-fluid">
+       <div class="texto"><h1></h1></div>
+        <div class="row"></div>
+                <div class="row">
+                    <dir><img class="imagen" id="17" src="baratheon.png" alt=""></dir>
+                    <dir><img class="imagen" id="362" src="stark.jpg" alt=""></dir>
+                    <dir><img class="imagen" id="378" src="targaryen.jpg" alt=""></dir>
+                    <dir><img class="imagen" id="229" src="lannister.jpg" alt=""></dir>
+                </div>
+            </div> 
+        </div>
+        <div class="row"> 
+            <div class="col-4 offset-4">       
+            <div class="card" style="width: 30rem;">
+                <h5 class="card-title">detalles</h5>
+                    <div class="datos">
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+
+        $(document).ready(function () {
+            $('.imagen').on("click", function () {
+            
+            var m = $(this).attr("id");
+
+            $.get("https://anapioficeandfire.com/api/houses/"+ m, function (res) {
+                 
+            var desarr = `<ul>
+                            <li class="estycol">nombre    : ${res.name}</li>
+                            <li class="estycol">mundo    :  ${res.words}</li>
+                            <br>
+                            <li class="estycol">titulos   :  ${res.titles}</li>
+                        </ul>`
+            $(".datos").html(desarr);
+                      
+                                                          
+                }, "json");
+               
+            
+            });
+          
+        });
+
+    </script>
+
+</body>
+
+</html>
